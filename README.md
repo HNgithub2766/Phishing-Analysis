@@ -40,13 +40,14 @@ To find this information the email security page was checked on LetsDefend and I
 - What is the recipient address? lars@letsdefend.io
 - Is the mail content suspicious? Yes - due to external sender address, suspicious attachment name and presence of excel 4.0 macros detected in the attachment. 
 - Are there any attachment? Yes
+  
 **Please see Image2 for screenshot of findings. 
 
 ## Attachment Analysis:
 Step 3: Are there attahcments or URLs in the email? I answered Yes as per the my above findings from the email log. 
 Step 4: Analyse the Attachment and determine if it's malicious or non-malicious? I downloaded the attachment and extracted it in a sandbox environment. I found the zip folder contained 3 files; iroto1.dll, iroto.dll, research-1646684671.xls (please see Image4 for details). Next, I uploaded these files to VirusTotal to analyse them - please see Image5 for VirusTotal scan results. Looking at the files in VT I could see the Excel file and DLL payloads were flagged as malicious by multiple security vendors. Thus, I answered Malicious on the Playbook. 
 
-## Mail Delivery and Link Analysis:
+## Mail Delivery and Link Analysis
 Step 5: Check if Mail Delivered to user? Yes, this was displayed in the Alert under Device Action = Allowed. 
 Step 6: Check if someone opened the Malicious File/URL? Yes it was opened, this was checked using the C2 addresses of the malicious files. As per Image6 we can see that the C2 infrastructure identified in this case includes the following domains and IP addresses. 
 Malicious Domains: 
@@ -65,7 +66,7 @@ This behaviour is suspicious because:
 See Image 7, 8 and 9 for screen captures of these logs. 
 
 
-## Containment: 
+## Containment
 Step 7: Deleted email from recipient
 Step 8: Containtment Outcome - The affected host (LarsPRD) was successfully contained and no lateral movement was observed in the environment.
 
