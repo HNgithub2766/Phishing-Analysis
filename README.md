@@ -40,7 +40,7 @@ To find this information the email security page was checked on LetsDefend and I
 - What is the recipient address? lars@letsdefend.io
 - Is the mail content suspicious? Yes - due to external sender address, suspicious attachment name and presence of excel 4.0 macros detected in the attachment. 
 - Are there any attachment? Yes
-Please see Image2 for screenshot of findings. 
+**Please see Image2 for screenshot of findings. 
 
 ## Attachment Analysis:
 Step 3: Are there attahcments or URLs in the email? I answered Yes as per the my above findings from the email log. 
