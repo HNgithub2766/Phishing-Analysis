@@ -34,12 +34,12 @@ This investigation documents the analysis of a phishing email alert involving a 
 Step 1: Took ownership of the incident and created a case to begin investigation. 
 Step 2: Obtained the information requested in the Playbook, before stating analysis on the incoming email. 
 To find this information the email security page was checked on LetsDefend and I searched for the email using the sender address. Here I viewed the email content such as email body and attachments and could answer the below questions. 
-When was it sent? Jun 13, 2021 - 02:13 PM
-What is the email's SMTP address? 
-What is the sender address? 24.213.228.54
-What is the recipient address? lars@letsdefend.io
-Is the mail content suspicious? Yes - due to external sender address, suspicious attachment name and presence of excel 4.0 macros detected in the attachment. 
-Are there any attachment? Yes
+- When was it sent? Jun 13, 2021 - 02:13 PM
+- What is the email's SMTP address? 
+- What is the sender address? 24.213.228.54
+- What is the recipient address? lars@letsdefend.io
+- Is the mail content suspicious? Yes - due to external sender address, suspicious attachment name and presence of excel 4.0 macros detected in the attachment. 
+- Are there any attachment? Yes
 Please see Image2 for screenshot of findings. 
 
 ## Attachment Analysis:
