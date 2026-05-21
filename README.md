@@ -24,7 +24,7 @@ extraction and MITRE ATT&CK mapping.
 ## Labs
 | Lab | Description | Techniques |
 |-----|-------------|------------|
-| [Lab 01](lab-01/readme.md) | SOC146 - Phishing Mail Detected - Excel 4.0 Macros | T1566.001 |
+| [Lab 01](lab-01/readme.md) | SOC146 - Phishing Mail Detected - Excel 4.0 Macros | T1566.001, T1204, T1218.010, T1059   |
 
 
 ## Certifications / Platform
