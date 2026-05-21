@@ -41,7 +41,7 @@ This investigation documents the analysis of a phishing email alert involving a 
 - Is the mail content suspicious? Yes - due to external sender address, suspicious attachment name and presence of excel 4.0 macros detected in the attachment. 
 - Are there any attachment? Yes
   
-![Email Details Screenshot](lab-01/lab-01 screenshots/EmailDetails.png)
+![Email Details Screenshot](lab-01/lab-01screenshots/EmailDetails.png)
 
 
 ## Attachment Analysis:
