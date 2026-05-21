@@ -67,7 +67,7 @@ This investigation documents the analysis of a phishing email alert involving a 
 
 ## Mail Delivery and Link Analysis
 - Step 5: Check if Mail Delivered to user? Yes, this was displayed in the Alert under Device Action = Allowed. 
-- Step 6: Check if someone opened the Malicious File/URL? *Yes* it was opened, this was checked using the C2 addresses of the malicious files - see below. 
+- Step 6: Check if someone opened the Malicious File/URL? Yes - it was opened, this was checked using the C2 addresses of the malicious files - see below. 
 
 *Figure 4: Contacted IP addresses of research.xls*
 
