@@ -40,6 +40,8 @@ This investigation documents the analysis of a phishing email alert involving a 
 - What is the recipient address? lars@letsdefend.io
 - Is the mail content suspicious? Yes - due to external sender address, suspicious attachment name and presence of excel 4.0 macros detected in the attachment. 
 - Are there any attachment? Yes
+
+**Figure1: Email Log Findings shwoing suspicious sender and attachment**
   
 ![Email Details Screenshot](https://github.com/HNgithub2766/Phishing-Analysis/blob/7841bdf997b08cce36cd7f228f27bed7c156481e/lab-01/lab-01%20screenshots/EmailDetails.png)
 
