@@ -69,33 +69,57 @@ This investigation documents the analysis of a phishing email alert involving a 
 *Step 5:* Check if Mail Delivered to user? Yes, this was displayed in the Alert under Device Action = Allowed. 
 *Step 6:* Check if someone opened the Malicious File/URL? Yes it was opened, this was checked using the C2 addresses of the malicious files - see below. 
 
-*Figure 4: 
+*Figure 4: Contacted IP addresses of research.xls*
 
-As per Figure 4 we can see that the C2 infrastructure identified in this case includes the following domains and IP addresses. 
+![ContactedIPAddresses](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/ContactedIPAddresses.png)
+
+*Figure 5: Contacted URLs of research.xls*
+
+![ContactedURLs](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/ContactedURLs.png)
+
+**As per Figure 4 and 5 we can see that the C2 infrastructure identified in this case includes the following domains and IP addresses.**
 *Malicious Domains:*
 `royalpalm.sparkblue.lk`
 `nws.visionconsulting.ro`
 *External IP Addresses:*
 `188.213.19.81`
 `192.232.219.67`
-These were identified in VirusTotal under the contacted domains and contacted ip addresses of the xls file. The ip addresses were further searched within the endpoint monitoring tool and correlated with the host: LarsPRD. Upon invesitigating the browser history I found the contacted URLs of the malcious macros file and within command history the command `regsvr32.exe -s` was executed to silently register the malicious DLLs. An additional detection opportunity was identified involving Microsoft Excel spawning the `regsvr32.exe` process to register malicious DLL files.
+
+These were identified in VirusTotal under the contacted domains and contacted ip addresses of the xls file. The ip addresses were further searched within the endpoint monitoring tool and correlated with the host: LarsPRD. 
+
+*Figure 6: GET REQUEST Sent from LarsPRD to `188.213.19.81`*
+
+![LogManagement2](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/LogManagement2.png)
+
+*Figure 7: GET REQUEST Sent from LarsPRD to `192.232.219.67`*
+
+![LogManagement.png](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/LogManagement.png)
+
+
+Upon invesitigating the browser history I found the contacted URLs of the malcious macros file within the browser history of LarsPRD and within command history the command `regsvr32.exe -s` was executed to silently register the malicious DLLs. An additional detection opportunity was identified involving Microsoft Excel spawning the `regsvr32.exe` process to register malicious DLL files.
+
+*Figure 8: CommandLine History of LarsPRD* 
+![CommandlineProcesses](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/Commandline%20Processes.png)
+
+*Figure 9 and 10: Browser History of LarsPRD*
+![BrowserHistory1](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/Browser%20History1.png)
+
+*Figure 11: Process History of LarsPRD*
+![BrowserHistory2](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/Browser%20History2.png)
+
 
 **This behaviour is suspicious because:**
 - Microsoft Excel normally should not spawn `regsvr32.exe`
 - Attackers commonly abuse `regsvr32.exe` as a LOLBin (Living Off the Land Binary)
 - Excel 4.0 macros can be used to execute malicious commands and load payloads
-
-*Please see below for screen captures of log findings*
-
-
- 
+  
 
 ## Containment
 Step 7: Deleted email from recipient
 Step 8: Containtment Outcome - The affected host (LarsPRD) was successfully contained and no lateral movement was observed in the environment.
 
 *Please see below for screen capture of Confinement*
-
+![Containment](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/Containment.png)
 
 
 ## Artifacts
@@ -129,6 +153,9 @@ No evidence suggests false positive behavior or benign execution.
 **True Positive**
 
 The alert is confirmed as a legitimate phishing incident involving a malicious Excel macro attachment that resulted in endpoint compromise and C2 communication.
+
+*Figure 12: Displays Closed Case Notes*
+![Verdict](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/Verdict.png)
 
 
 
