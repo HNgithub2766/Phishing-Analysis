@@ -66,8 +66,8 @@ This investigation documents the analysis of a phishing email alert involving a 
 
 
 ## Mail Delivery and Link Analysis
-*Step 5:* Check if Mail Delivered to user? Yes, this was displayed in the Alert under Device Action = Allowed. 
-*Step 6:* Check if someone opened the Malicious File/URL? Yes it was opened, this was checked using the C2 addresses of the malicious files - see below. 
+- Step 5: Check if Mail Delivered to user? Yes, this was displayed in the Alert under Device Action = Allowed. 
+- Step 6: Check if someone opened the Malicious File/URL? *Yes* it was opened, this was checked using the C2 addresses of the malicious files - see below. 
 
 *Figure 4: Contacted IP addresses of research.xls*
 
@@ -78,10 +78,11 @@ This investigation documents the analysis of a phishing email alert involving a 
 ![ContactedURLs](https://github.com/HNgithub2766/Phishing-Analysis/blob/6478581e5c27033047b927ce49b63b0fbe40f8f0/lab-01/lab-01%20screenshots/ContactedURLs.png)
 
 **As per Figure 4 and 5 we can see that the C2 infrastructure identified in this case includes the following domains and IP addresses.**
-*Malicious Domains:*
+
+-*Malicious Domains:*
 `royalpalm.sparkblue.lk`
 `nws.visionconsulting.ro`
-*External IP Addresses:*
+-*External IP Addresses:*
 `188.213.19.81`
 `192.232.219.67`
 
