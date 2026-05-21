@@ -135,8 +135,8 @@ Step 8: Containtment Outcome - The affected host (LarsPRD) was successfully cont
 'b775cd8be83696ca37b2fe00bcb40574' (malicious macro file hash)
 
 ### Malicious IP Addresses
-'188.213.19.81'
-'192.232.219.67'
+`188.213.19.811`
+`192.232.219.67`
 
 ### Suspicious Processes
 `regsvr32.exe`
