@@ -41,55 +41,77 @@ This investigation documents the analysis of a phishing email alert involving a 
 - Is the mail content suspicious? Yes - due to external sender address, suspicious attachment name and presence of excel 4.0 macros detected in the attachment. 
 - Are there any attachment? Yes
 
-**Figure1: Email Log Findings shwoing suspicious sender and attachment**
+*Figure 1: Email Log Findings shwoing suspicious sender and attachment*
   
 ![Email Details Screenshot](https://github.com/HNgithub2766/Phishing-Analysis/blob/7841bdf997b08cce36cd7f228f27bed7c156481e/lab-01/lab-01%20screenshots/EmailDetails.png)
 
 
 ## Attachment Analysis:
 - Step 3: Are there attahcments or URLs in the email? I answered Yes as per the my above findings from the email log.
+- Step 4: Analyse the Attachment and determine if it's malicious or non-malicious? I downloaded the attachment and extracted it in a sandbox environment. I found the zip folder contained 3 files; iroto.dll, iroto1.dll, research-1646684671.xls (please see [Attachments Screenshot](https://github.com/HNgithub2766/Phishing-Analysis/blob/1b94a3fe97f82b0e18694bc6c9e364a013a063f4/lab-01/lab-01%20screenshots/Attachment.png) for details). Next, I uploaded these files to VirusTotal to analyse them - please see below for VirusTotal scan results.
 
-- Step 4: Analyse the Attachment and determine if it's malicious or non-malicious? I downloaded the attachment and extracted it in a sandbox environment. I found the zip folder contained 3 files; iroto1.dll, iroto.dll, research-1646684671.xls (please see [Attachments Screenshot](lab-01screenshots/Attachment.png) for details). Next, I uploaded these files to VirusTotal to analyse them - please see Image5 for VirusTotal scan results. Looking at the files in VT I could see the Excel file and DLL payloads were flagged as malicious by multiple security vendors.
+*Figure 2: iroto.dll Virus Total Scan Results*
 
-  Thus, I answered `Malicious` on the Playbook. 
+![iroto.dll](https://github.com/HNgithub2766/Phishing-Analysis/blob/1b94a3fe97f82b0e18694bc6c9e364a013a063f4/lab-01/lab-01%20screenshots/iroto.dll.png)
+
+*Figure 3: iroto1.dll Virus Total Scan Results*
+
+![iroto1.dll](https://github.com/HNgithub2766/Phishing-Analysis/blob/1b94a3fe97f82b0e18694bc6c9e364a013a063f4/lab-01/lab-01%20screenshots/iroto1.dll.png)
+
+*Figure 3: research-1646684671.xls Virus Total Scan Results*
+
+![research.xls](https://github.com/HNgithub2766/Phishing-Analysis/blob/1b94a3fe97f82b0e18694bc6c9e364a013a063f4/lab-01/lab-01%20screenshots/research.xls.png)
+
+**Looking at the files in VT I could see the Excel file and DLL payloads were flagged as malicious by multiple security vendors. Thus, I answered Malicious on the Playbook.**
+
 
 ## Mail Delivery and Link Analysis
-Step 5: Check if Mail Delivered to user? Yes, this was displayed in the Alert under Device Action = Allowed. 
-Step 6: Check if someone opened the Malicious File/URL? Yes it was opened, this was checked using the C2 addresses of the malicious files. As per Image6 we can see that the C2 infrastructure identified in this case includes the following domains and IP addresses. 
-Malicious Domains: 
-royalpalm.sparkblue.lk
-nws.visionconsulting.ro
-External IP Addresses:
-188.213.19.81
-192.232.219.67
+*Step 5:* Check if Mail Delivered to user? Yes, this was displayed in the Alert under Device Action = Allowed. 
+*Step 6:* Check if someone opened the Malicious File/URL? Yes it was opened, this was checked using the C2 addresses of the malicious files - see below. 
+
+*Figure 4: 
+
+As per Figure 4 we can see that the C2 infrastructure identified in this case includes the following domains and IP addresses. 
+*Malicious Domains:*
+`royalpalm.sparkblue.lk`
+`nws.visionconsulting.ro`
+*External IP Addresses:*
+`188.213.19.81`
+`192.232.219.67`
 These were identified in VirusTotal under the contacted domains and contacted ip addresses of the xls file. The ip addresses were further searched within the endpoint monitoring tool and correlated with the host: LarsPRD. Upon invesitigating the browser history I found the contacted URLs of the malcious macros file and within command history the command `regsvr32.exe -s` was executed to silently register the malicious DLLs. An additional detection opportunity was identified involving Microsoft Excel spawning the `regsvr32.exe` process to register malicious DLL files.
 
-This behaviour is suspicious because:
+**This behaviour is suspicious because:**
 - Microsoft Excel normally should not spawn `regsvr32.exe`
 - Attackers commonly abuse `regsvr32.exe` as a LOLBin (Living Off the Land Binary)
 - Excel 4.0 macros can be used to execute malicious commands and load payloads
 
-See Image 7, 8 and 9 for screen captures of these logs. 
+*Please see below for screen captures of log findings*
 
+
+ 
 
 ## Containment
 Step 7: Deleted email from recipient
 Step 8: Containtment Outcome - The affected host (LarsPRD) was successfully contained and no lateral movement was observed in the environment.
 
+*Please see below for screen capture of Confinement*
+
+
+
 ## Artifacts
 
 ### Malicious Domains/URL Addresses
-hxxps://royalpalm.sparkblue.lk/vCNhYrq3Yg8/dot.html
-hxxps://nws.visionconsulting.ro/N1G1KCXA/dot.html
+'hxxps://royalpalm.sparkblue.lk/vCNhYrq3Yg8/dot.html'
+'hxxps://nws.visionconsulting.ro/N1G1KCXA/dot.html'
 
 ### MD5 Hashes
-8e6fbefcbac2a1967941fa692c82c3ca (malicious dll hash)
-e03bde4862d4d93ac2ceed85abf50b18 (malicious dll hash)
-b775cd8be83696ca37b2fe00bcb40574 (malicious macro file hash)
+'8e6fbefcbac2a1967941fa692c82c3ca' (malicious dll hash)
+'e03bde4862d4d93ac2ceed85abf50b18' (malicious dll hash)
+'b775cd8be83696ca37b2fe00bcb40574' (malicious macro file hash)
 
 ### Malicious IP Addresses
-188.213.19.81 
-192.232.219.67
+'188.213.19.81'
+'192.232.219.67'
 
 ### Suspicious Processes
 `regsvr32.exe`
@@ -101,8 +123,6 @@ Based on email analysis, attachment detonation, and endpoint investigation, the 
 Correlation of sandbox results, VirusTotal indicators, and endpoint telemetry confirmed that the payload was successfully executed on the host (LarsPRD). Evidence of external network communication and suspicious process execution further validates malicious activity on the endpoint.
 
 No evidence suggests false positive behavior or benign execution.
-
----
 
 ## Verdict
 
