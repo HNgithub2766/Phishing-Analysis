@@ -3,7 +3,7 @@
 ## Overview
 This repository documents hands-on phishing email analysis labs completed 
 via LetsDefend's SOC Analyst learning path. Each lab simulates a real-world 
-phishing alert, walking through the full investigation process — from initial 
+phishing alert, walking through the full investigation process, from initial 
 triage and email header analysis, to malicious attachment sandboxing, IOC 
 extraction and MITRE ATT&CK mapping.
 
