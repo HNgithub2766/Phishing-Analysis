@@ -41,7 +41,7 @@ Given the domain `coffeeshooop.com` bears no legitimate business relevance and c
 ## Containment Actions Taken
 
 - The phishing email was **deleted** from the user's mailbox.
-- The affected endpoint was **quarantined** and escalated to **Tier 2** for further remediation.
+- The affected endpoint was **quarantined**.
 
 ## Recommendations
 
